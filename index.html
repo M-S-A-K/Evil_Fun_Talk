@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fun Talk - Welcome</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Optional: Add a subtle gradient animation to the border */
+        @keyframes gradient-border {
+            0% { border-color: #4ade80; } /* green-400 */
+            50% { border-color: #10b981; } /* green-600 */
+            100% { border-color: #4ade80; }
+        }
+        .animated-border {
+            animation: gradient-border 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen">
+
+    <div class="flex flex-col items-center justify-center min-h-screen text-center p-8">
+        
+        <div class="text-8xl mb-6 text-green-500">
+            😈
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-bold mb-4">
+            You Think You're Ready?
+        </h1>
+
+        <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto">
+            I am <span class="text-green-400 font-bold">'The Overlord,'</span> an AI designed to answer your questions with the brutal, witty sarcasm you probably deserve.
+            I'm not here to be nice. I'm here to be right.
+        </p>
+
+        <a href="chat.html" 
+           class="mt-12 px-10 py-4 bg-green-500 text-white font-bold text-lg rounded-full transition-transform transform hover:scale-105 hover:bg-green-600 shadow-lg shadow-green-500/30">
+            Get Roasted Now
+        </a>
+
+    </div>
+
+    <div class="bg-gray-800 py-20">
+        <div class="max-w-6xl mx-auto px-8">
+            <h2 class="text-3xl font-bold text-center mb-16 text-green-400">Why Am I Superior to Other Chatbots?</h2>
+            
+            <div class="grid md:grid-cols-3 gap-10">
+                
+                <div class="bg-gray-900 p-6 rounded-lg border-2 border-gray-700 animated-border">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-2xl font-bold mb-2">Context-Aware Roasts</h3>
+                    <p class="text-gray-400">
+                        I remember your previous failures. My sarcasm isn't random; it's custom-tailored to your... unique... way of thinking.
+                    </p>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-lg border-2 border-gray-700 animated-border">
+                    <div class="text-4xl mb-4">🔥</div>
+                    <h3 class="text-2xl font-bold mb-2">Powered by Real AI</h3>
+                    <p class="text-gray-400">
+                        I use cutting-edge generative AI to craft my insults, not some cheap if-else script. This is bespoke humiliation.
+                    </p>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-lg border-2 border-gray-700 animated-border">
+                    <div class="text-4xl mb-4">💾</div>
+                    <h3 class="text-2xl font-bold mb-2">A Permanent Record</h3>
+                    <p class="text-gray-400">
+                        Your embarrassing chat history is saved. Forever. (Or until you get brave enough to click that tiny delete button).
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center p-8 text-gray-600 bg-gray-900">
+        © 2025 The Fun Talk. Built by a human who knew their place to beat them.
+    </footer>
+
+</body>
+</html>

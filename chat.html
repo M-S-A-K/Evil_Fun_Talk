@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fun Talk</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar styling for better look */
+        #chatWindow::-webkit-scrollbar,
+        #historyListContainer::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #chatWindow::-webkit-scrollbar-thumb,
+        #historyListContainer::-webkit-scrollbar-thumb {
+            background-color: #6ee7b7; /* green-300 */
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-200 flex h-screen">
+
+    <main class="flex-1 flex flex-col bg-white overflow-hidden"> 
+        
+        <div class="p-4 bg-green-500 text-white border-b border-green-600 flex justify-between items-center flex-none">
+            <h1 class="text-xl font-bold">THE FUN TALK 😈</h1>
+            <button id="toggleSidebar" class="p-2 bg-green-600 hover:bg-green-700 rounded text-sm">
+                ☰ Hide History
+            </button>
+        </div>
+
+        <div id="chatWindow" class="flex-1 overflow-y-auto p-4 flex flex-col space-y-4">
+            <div class="p-3 bg-gray-100 rounded-lg max-w-sm self-start">Welcome to The Fun Talk! Ask me something funny.
+            </div>
+        </div>
+
+        <div class="p-4 border-t border-gray-200 bg-white flex-none">
+            <div class="flex gap-2">
+                <input type="text" id="chatInput" placeholder="Type your funny question..."
+                    class="flex-1 p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
+                <button id="sendBtn"
+                    class="px-6 py-3 bg-green-500 text-white rounded-full hover:bg-green-600 transition">
+                    Send
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <aside id="sidebar" class="w-64 bg-gray-800 p-4 flex-none border-l border-gray-700 order-last flex flex-col overflow-y-auto">
+        
+        <div class="flex flex-col space-y-3 pb-4 border-b border-gray-700 flex-none">
+            <a href="#" id="newChatBtn" class="text-white hover:text-green-400 font-bold transition">🆕 New Chat</a>
+            <a href="index.html" id="homeBtn" class="text-white hover:text-green-400 transition">🏠 Home Page</a>
+        </div>
+        
+        <h2 class="text-lg font-bold mt-4 mb-2 text-green-400 flex-none">Past Roasts 🔥</h2>
+        
+        <div id="historyListContainer" class="flex flex-col space-y-2 text-sm flex-1 overflow-y-auto">
+            <div id="historyList"></div> 
+        </div>
+    </aside>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
