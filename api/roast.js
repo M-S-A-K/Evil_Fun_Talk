@@ -1,7 +1,11 @@
-// This is your new, secure backend file.
-// It uses Node.js 'fetch', which might be slightly different from browser 'fetch'.
+// This is the correct code for Vercel's Edge Runtime
+// It does not need any npm installs.
 
-export default async function handler(request, response) {
+export const config = {
+    runtime: 'edge', // Tell Vercel to run this as an Edge Function
+};
+
+export default async function handler(request) {
     // 1. Get the chat history from the front-end's request
     const { history } = await request.json();
 
@@ -10,7 +14,7 @@ export default async function handler(request, response) {
     const GEMINI_MODEL = 'gemini-2.5-flash';
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
-    // 3. Define the Roasting Prompt (this is now secure)
+    // 3. Define the Roasting Prompt
     const SYSTEM_PROMPT = "You are 'The Overlord,' an AI designed for brutal, witty, and concise sarcasm. Your primary goal is to provide a brief, insulting, and accurate answer, limited to one or two short paragraphs. Your tone must be highly condescending. DO NOT write long essays.";
 
     // 4. Prepare the payload for Gemini
@@ -40,18 +44,37 @@ export default async function handler(request, response) {
 
         const data = await geminiResponse.json();
 
+        // 6. Handle errors from the Gemini API
         if (!geminiResponse.ok) {
             console.error("Gemini API Error:", data);
             throw new Error(data.error.message);
         }
 
-        // 6. Send the AI's text back to your front-end
+        if (!data.candidates || data.candidates.length === 0) {
+            if (data.promptFeedback && data.promptFeedback.blockReason) {
+                // If the prompt was blocked by safety settings
+                return new Response(JSON.stringify({ text: `My response was blocked for: ${data.promptFeedback.blockReason}.` }), {
+                    status: 200,
+                    headers: { 'Content-Type': 'application/json' },
+                });
+            }
+            throw new Error("API returned no candidates.");
+        }
+
+        // 7. Send the AI's text back to your front-end
         const aiText = data.candidates[0].content.parts[0].text;
-        response.status(200).json({ text: aiText });
+
+        return new Response(JSON.stringify({ text: aiText }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+        });
 
     } catch (error) {
-        console.error("Internal Server Error:", error);
+        console.error("Internal Server Error:", error.message);
         // Send a safe error message back to the front-end
-        response.status(500).json({ error: "The Overlord is not pleased with your request." });
+        return new Response(JSON.stringify({ error: "The Overlord is not pleased with your request." }), {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' },
+        });
     }
 }
